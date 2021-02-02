@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:11.1.1-devel-ubuntu20.04
 
 ENV TZ Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
@@ -22,9 +22,9 @@ RUN apt update && apt install -y --no-install-recommends \
         rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt
-RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
-RUN bash Anaconda3-2019.03-Linux-x86_64.sh -b -p /opt/anaconda3
-RUN rm Anaconda3-2019.03-Linux-x86_64.sh
+RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+RUN bash Anaconda3-2020.11-Linux-x86_64.sh -b -p /opt/anaconda3
+RUN rm Anaconda3-2020.11-Linux-x86_64.sh
 
 # Set the locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
@@ -37,7 +37,7 @@ ENV LC_ALL en_US.UTF-8
 RUN mkdir /var/run/sshd
 
 WORKDIR /root
-RUN git clone https://github.com/junha-l/dotfiles
+RUN git clone https://github.com/chrockey/dotfiles.git
 RUN cd dotfiles
 RUN bash dotfiles/install-vim.sh
 RUN bash dotfiles/install-zsh.sh
