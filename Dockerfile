@@ -18,6 +18,8 @@ RUN apt update && apt install -y --no-install-recommends \
         tmux \
         vim-athena \
 	locales \
+	libgl1-mesa-glx \
+	libusb-1.0-0-dev \
         zsh && \
         rm -rf /var/lib/apt/lists/*
 
