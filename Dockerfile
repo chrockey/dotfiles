@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.0.3-devel-ubuntu20.04
+FROM nvidia/cuda:11.1.1-cudnn8-devel-ubuntu20.04
 
 ENV TZ Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
@@ -25,6 +25,7 @@ WORKDIR /opt
 RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
 RUN bash Anaconda3-2020.11-Linux-x86_64.sh -b -p /opt/anaconda3
 RUN rm Anaconda3-2020.11-Linux-x86_64.sh
+RUN conda config ----set auto_activate_base false
 
 # Set the locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
@@ -45,5 +46,4 @@ RUN bash dotfiles/install-tmux.sh
 RUN /opt/anaconda3/bin/conda init zsh 
 
 EXPOSE 22
-
 
